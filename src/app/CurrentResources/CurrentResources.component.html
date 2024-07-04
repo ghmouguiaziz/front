@@ -1,0 +1,967 @@
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head><div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header d-flex align-items-center card-header-danger">
+                        <h4 class="card-title  mt-0">Compute Servers  </h4> 
+                        
+                        
+                        <p class="card-category"> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table centered-cell table-hover">
+                            <thead class="">
+                                
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                              </thead>
+                              <tbody>
+                                <tr class="gras">
+                                    
+                                    <td rowspan="2" >
+                                        Name
+                                      </td>
+                                      <td rowspan="2">
+                                          Quantity 
+                                          
+                                      </td>
+                                      
+                                      
+                                      
+                                      <td colspan="2">
+                                        Basic Compute
+                                      </td>
+                                       <td colspan="2">
+                                        Basic Compute LocalPaaS
+                                          
+                                       </td>
+                                       <td colspan="2">
+                                        Intensive Compute
+                                          
+                                       </td>
+                                       <td colspan="2">
+                                        Network Intensive
+                                          
+                                       </td>
+                                       <td rowspan="2">
+                                        Type Of Operation
+                                      </td>
+                                      <td rowspan="2">
+                                        Date
+                                      </td>
+                                       
+                                       
+                                      <td  rowspan="2">
+                                          <button class=" btn centered-cell  btn-gray btn-sm icon-button "   data-toggle="modal" data-target="#myModalnewcompute">
+                                            <i class="material-icons  ">add</i>
+                                           
+                                          </button>
+                                      </td>
+                                </tr>
+                                <tr class="gras">
+                                <td >
+                                    vCPU
+                                  </td>
+                                  <td>
+                                    vRAM
+                                  </td>
+                                  <td >
+                                    vCPU
+                                  </td>
+                                  <td>
+                                    vRAM
+                                  </td>
+                                  <td >
+                                    vCPU
+                                  </td>
+                                  <td>
+                                    vRAM
+                                  </td>
+                                  <td >
+                                    vCPU
+                                  </td>
+                                  <td>
+                                    vRAM
+                                  </td>
+                                  
+                                  
+                                </tr>
+                                  <tr *ngFor="let a of computes ">
+                                      
+                                      <td >
+                                        {{a.classOfCompute}}
+                                      </td>
+                                      <td>
+                                        {{a.qty}}
+                                      </td>
+                                      
+                                      <td>
+                                        {{a.bcvcpu}}
+                                      </td>
+                                      <td>
+                                        {{a.bcvram}}
+                                      </td>
+                                      
+                                      <td>
+                                        {{a.bcngvcpu}}
+                                      </td>
+                                      <td>
+                                        {{a.bcngvram}}
+                                      </td>
+                                      <td>
+                                        {{a.icvcpu}}
+                                      </td>
+                                      <td>
+                                        {{a.icvram}}
+                                      </td>
+                                      <td>
+                                        {{a.invcpu}}
+                                      </td>
+                                      <td>
+                                        {{a.invram}}
+                                      </td>
+                                      <td>
+                                        {{a.champ}}
+                                      </td>
+                                      <td>
+                                       {{a.actDate}}
+                                      </td>
+                                      
+                                      <td >
+
+                                        <button  class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdatecompute" (click)="getupdateCompute(a)"  >
+                                          <i class="material-icons  ">edit</i>
+                                        </button>
+                                        <button  class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeletecompute" (click)="getid(a.idCompute)" >
+                                          <i class="material-icons  ">delete</i>
+                                        </button>
+                                      
+                                      </td>
+                                      
+                                      
+                                  </tr>
+                                  <tr class="gras">
+                                    <td>Total</td>
+                                    <td></td>
+                                    <td>{{bcc}}</td>
+                                    <td>{{bcr}}</td>
+                                    <td>{{lpc}}</td>
+                                    <td>{{lpr}}</td>
+                                    <td>{{icc}}</td>
+                                    <td>{{icr}}</td>
+                                    <td>{{inc}}</td>
+                                    <td>{{inr}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    
+                                  </tr>
+                                  
+                              </tbody>
+                        </table>
+                        
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header d-flex align-items-center card-header-danger">
+                        <h4 class="card-title mt-0"> Storage Servers</h4>
+                        
+                        <p class="card-category"> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table centered-cell table-hover">
+                            <thead class="">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+
+                                
+                              </thead>
+                              <tbody>
+                                <tr class="gras">
+                                    <td rowspan="2">
+                                      Name
+                                    </td>
+                                    <td rowspan="2">
+                                      Quantity 
+                                      
+                                  </td>
+                                    
+                                      
+                                      
+                                      <td colspan="2">
+                                        Performance Storage
+                                      </td>
+                                       <td colspan="2">
+                                        Capacity Storage
+                                          
+                                       </td>
+                                       <td rowspan="2">
+                                        Type Of Operation
+                                      </td>
+                                      <td rowspan="2">
+                                        Date
+                                      </td>
+                                      <td  rowspan="2">
+                                          <button class=" btn centered-cell  btn-gray btn-sm icon-button "   data-toggle="modal" data-target="#myModalnewstorage">
+                                            <i class="material-icons  ">add</i>
+                                           
+                                          </button>
+                                      </td>
+                                </tr>
+                                <tr class="gras">
+                                <td >
+                                    Gross Volume
+                                  </td>
+                                  <td>
+                                    Net Volume
+                                  </td>
+                                  <td >
+                                    Gross Volume
+                                  </td>
+                                  <td>
+                                    Net Volume
+                                  </td>
+                                </tr>
+                                  <tr *ngFor="let a of storages">
+                                      
+                                      <td >
+                                        {{a.classOfStorage}}
+                                      </td>
+                                      <td>
+                                        {{a.qty}}
+                                        </td>
+                                      
+                                      
+                                      <td>
+                                        {{a.perfGrossVolume}}
+                                      </td>
+                                      <td>
+                                        {{a.perfNetVolume}}
+                                      </td>
+                                      
+                                      <td>
+                                        {{a.capaGrossVolume}}
+                                      </td>
+                                      <td>
+                                        {{a.capaNetVolume}}
+                                      </td>
+                                      <td>{{a.champ}}</td>
+                                      <td>{{a.actDate}}</td>
+                                      
+                                      <td >
+                                        <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdatestorage" (click)="getupdateStorage(a)"  >
+                                          <i class="material-icons  ">edit</i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeletestorage" (click)="getid(a.idStorage)">
+                                          <i class="material-icons  ">delete</i>
+                                        </button>
+                                      
+                                        
+                                      </td>
+                                      
+                                      
+                                  </tr>
+                                  <tr class="gras">
+                                    <td>Total</td>
+                                    <td></td>
+                                    <td>{{gperf}}</td>
+                                    <td>{{perf}}</td>
+                                    <td>{{gcapa}}</td>
+                                    <td>{{capa}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+                                  
+                              </tbody>
+                        </table>
+                        
+                        <div class="modal fade" id="myModalnewcompute">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                <h4 class="modal-title centered-cell gras">New Compute Server</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+                              
+                              <!-- Modal Body -->
+                              <div class="modal-body">
+                                
+                                
+
+                                <select   class="custom-select" (change)="onSelectcompute($event)"  > 
+                                  <option value="" disabled selected>Name Of Compute</option>  
+                                  <option *ngFor="let c of computesCapa">{{c.name}}</option>
+                                    
+                                </select>
+
+                                
+
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="number" [(ngModel)]="newcompute.qty" [ngModelOptions]="{standalone: true}" placeholder="Quantity" />
+                                </mat-form-field>
+                                </div>
+
+                                <select   class="custom-select" (change)="onSelectchamp($event)"  > 
+                                  <option value="" disabled selected>Initial Or Extension?</option>  
+                                  <option>Initial</option>
+                                  <option>Extension</option>
+                                    
+                                </select>
+
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="date" [(ngModel)]="newcompute.actDate" [ngModelOptions]="{standalone: true}" placeholder=" Date Of Operation" />
+                                </mat-form-field>
+                                </div>
+                                
+                              </div>
+                              
+                              <!-- Modal Footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary"(click)="addComputeAva(idD)" data-dismiss="modal" >ADD</button>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal fade" id="myModalnewstorage">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                <h4 class="modal-title centered-cell gras">New Storage Server</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+                              
+                              <!-- Modal Body -->
+                              <div class="modal-body">
+                                
+                                <select   class="custom-select" (change)="onSelectstorage($event)"  > 
+                                  <option value="" disabled selected>Name Of Storage</option>  
+                                  <option *ngFor="let c of storagesCapa">{{c.name}}</option>
+                                    
+                                </select>
+
+                                
+
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="number" [(ngModel)]="newstorage.qty" [ngModelOptions]="{standalone: true}" placeholder="Quantity" />
+                                </mat-form-field>
+                                </div>
+                                <select   class="custom-select" (change)="onSelectchampS($event)"  > 
+                                  <option value="" disabled selected>Initial Or Extension?</option>  
+                                  <option>Initial</option>
+                                  <option>Extension</option>
+                                    
+                                </select>
+
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="date" [(ngModel)]="newstorage.actDate" [ngModelOptions]="{standalone: true}" placeholder=" Date Of Operation" />
+                                </mat-form-field>
+                                </div>
+                                
+                              
+                              </div>
+                              
+                              <!-- Modal Footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary"(click)="addStorageAva(idD)" data-dismiss="modal" >ADD</button>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal fade" id="myModalnewcontrolnetwork">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                <h4 class="modal-title centered-cell gras">New Control or Network Server</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+                              
+                              <!-- Modal Body -->
+                              <div class="modal-body">
+                                
+                                <select   class="custom-select" (change)="onSelectcontrol($event)"  > 
+                                  <option value="" disabled selected>Name</option>  
+                                  <option *ngFor="let c of controlnetsCapa">{{c.classOfcontrolNetwork}}</option>
+                                    
+                                </select>
+
+                                
+
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="number" [(ngModel)]="newcontrolnetwork.qty" [ngModelOptions]="{standalone: true}" placeholder="Quantity" />
+                                </mat-form-field>
+                                </div>
+                                
+                                <select   class="custom-select" (change)="onSelectchampC($event)"  > 
+                                  <option value="" disabled selected>Initial Or Extension?</option>  
+                                  <option>Initial</option>
+                                  <option>Extension</option>
+                                    
+                                </select>
+
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="date" [(ngModel)]="newcontrolnetwork.actDate" [ngModelOptions]="{standalone: true}" placeholder=" Date Of Operation" />
+                                </mat-form-field>
+                                </div>
+                                
+                              </div>
+                              
+                              <!-- Modal Footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary"(click)="addControlNetworkAva(idD)" data-dismiss="modal" >ADD</button>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal fade" id="myModalnewdevice">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                <h4 class="modal-title centered-cell gras">New Device</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+                              
+                              <!-- Modal Body -->
+                              <div class="modal-body">
+                                
+                                <select   class="custom-select" (change)="onSelectdevice($event)"  > 
+                                  <option value="" disabled selected>Device Name</option>  
+                                  <option *ngFor="let c of devicesCapa">{{c.name}}</option>
+                                    
+                                </select>
+
+                                
+
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="number" [(ngModel)]="newdevice.qty" [ngModelOptions]="{standalone: true}" placeholder="Quantity" />
+                                </mat-form-field>
+                                </div>
+                                <select   class="custom-select" (change)="onSelectchampD($event)"  > 
+                                  <option value="" disabled selected>Initial Or Extension?</option>  
+                                  <option>Initial</option>
+                                  <option>Extension</option>
+                                    
+                                </select>
+
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="date" [(ngModel)]="newdevice.actDate" [ngModelOptions]="{standalone: true}" placeholder=" Date Of Operation" />
+                                </mat-form-field>
+                                </div>
+                                
+                              </div>
+                              
+                              <!-- Modal Footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary"(click)="addDevice(idD)" data-dismiss="modal" >ADD</button>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header d-flex align-items-center card-header-danger">
+                        <h4 class="card-title mt-0"> Control and Network Servers</h4>
+                        
+                        <p class="card-category"> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table centered-cell table-hover ">
+                                <thead>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  </thead>
+                                  <tbody>
+                                    <tr class="gras">
+                                    
+                                    <td >
+                                      Class Of Compute 
+                                    </td>
+                                    <td >
+                                        Quantity 
+                                    </td>
+                                    <td>
+                                      Type Of Operation
+                                    </td>
+                                    <td >
+                                      Date
+                                    </td>
+                                    
+                                     
+                                      <td colspan="2" >
+                                        <button class=" btn centered-cell  btn-gray btn-sm icon-button " colspan="2" data-toggle="modal" data-target="#myModalnewcontrolnetwork">
+                                          <i class="material-icons  ">add</i>
+                                         
+                                        </button>
+                                    </td>
+                                    </tr>
+                                      <tr *ngFor="let a of controlnetworks">
+                                        <td >
+                                          {{a.classOfControlNetwork}}
+                                        </td>
+                                        <td >
+                                          {{a.qty}}
+                                        </td>
+                                        <td>{{a.champ}}</td>
+                                        <td>{{a.actDate}}</td>
+                                        <td>
+                                          <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdatecn"  (click)="getupdateCN(a)" >
+                                            <i class="material-icons  ">edit</i>
+                                          </button>
+                                          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeletecn" (click)="getid(a.idControlNetwork)">
+                                            <i class="material-icons  ">delete</i>
+                                          </button>
+                                        
+                                          
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                      
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table centered-cell table-hover ">
+              <thead>
+                <th>
+                </th>
+                <th>
+                </th>
+                
+                
+                </thead>
+                <tbody>
+                  <tr class="gras">
+                  
+                  <td >Total Servers</td>
+                  <td>Capacity Node</td>
+                  <td >Total SFPs</td>
+                  
+                  
+                  </tr>
+                    <tr>
+                      <td>{{totqty}}</td>
+                      <td>{{capacities}}</td>
+                      <td>{{totsfps}}</td>
+                      
+                      
+
+                      
+                     
+                  </tr>
+                  
+                    
+                </tbody>
+          </table>
+          <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="card-header d-flex align-items-center card-header-danger">
+                    <h4 class="card-title mt-0">Network Devices</h4>
+                    
+                    <p class="card-category"> </p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table centered-cell table-hover ">
+                            <thead>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              </thead>
+                              <tbody>
+                                <tr class="gras">
+                                
+                                <td colspan="2">
+                                  Switches
+                                </td>
+                                <td colspan="3">
+                                    Ports 
+                                </td>
+                                <td rowspan="2">
+                                  Type Of Operation
+                                </td>
+                                <td rowspan="2">
+                                  Date
+                                </td>
+                                
+                                 
+                                  <td  rowspan="2" >
+                                    <button class=" btn centered-cell  btn-gray btn-sm icon-button "  data-toggle="modal" data-target="#myModalnewdevice">
+                                      <i class="material-icons  ">add</i>
+                                     
+                                    </button>
+                                </td>
+                                </tr>
+                                <tr class="gras">
+                                  <td>Type</td>
+                                  <td>Quantity</td>
+                                  <td>Total</td>
+                                  <td>Used</td>
+                                  <td>Free</td>
+                                </tr>
+                                  <tr *ngFor="let a of networkelements">
+                                    <td >
+                                      {{a.name}}
+                                    </td>
+                                    <td >
+                                      {{a.qty}}
+                                    </td>
+                                    <td>{{a.ports}}</td>
+                                    <td>{{a.used}}</td>
+                                    <td>{{a.free}}</td>
+                                    <td>{{a.champ}}</td>
+                                    <td>{{a.actDate}}</td>
+
+                                    <td>
+
+                                      <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdatedevice" (click)="getupdateDevice(a)"  >
+                                        <i class="material-icons  ">edit</i>
+                                      </button>
+                                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeletedevice" (click)="getid(a.idElements)" >
+                                        <i class="material-icons  ">delete</i>
+                                      </button>
+                                    </td>
+                                     <td>
+                                      
+                                    </td>
+                                    
+                                </tr>
+                                <tr class="gras">
+                                  <td  >Access switchs totals</td>
+                                  <td>{{totdevices}}</td>
+                                  <td>{{totports}}</td>
+                                  <td>{{used}}</td>
+                                  <td>{{free}}</td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                </tr>
+                                
+                                  
+                              </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+        </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModaldeldeletedevice">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title gras">Delete?</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-secondary"  (click)="deleteDevice(id)" data-dismiss="modal" >yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModaldeldeletecn">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title gras">Delete?</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-secondary"  (click)="deleteCN(id)" data-dismiss="modal" >yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModaldeldeletecompute">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title gras">Delete?</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-secondary"  (click)="deleteCompute(id)" data-dismiss="modal">yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="modal fade" id="myModaldeldeletestorage">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title gras">Delete?</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-secondary"  (click)="deleteStorage(id)" data-dismiss="modal">yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="myModalupdatecompute">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title centered-cell gras">Update Compute Server</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal Body -->
+        <div class="modal-body">
+          
+          
+
+          
+
+          
+
+          <div class="col-md-6" class="form-outline mb-4">
+            <mat-form-field class="example-full-width">
+            <input matInput  type="number" [(ngModel)]="updatecompute.qty" [ngModelOptions]="{standalone: true}" placeholder="Quantity" />
+          </mat-form-field>
+          </div>
+
+          
+
+          <div class="col-md-6" class="form-outline mb-4">
+            <mat-form-field class="example-full-width">
+            <input matInput  type="date" [(ngModel)]="updatecompute.actDate" [ngModelOptions]="{standalone: true}" placeholder=" Date Of Operation" />
+          </mat-form-field>
+          </div>
+          
+        </div>
+        
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary"(click)="updateCompute(updatecompute.idCompute)" data-dismiss="modal">Save</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="myModalupdatestorage">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title centered-cell gras">Update Storage Server</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal Body -->
+        <div class="modal-body">
+          
+          
+
+          
+
+          <div class="col-md-6" class="form-outline mb-4">
+            <mat-form-field class="example-full-width">
+            <input matInput  type="number" [(ngModel)]="updatestorage.qty" [ngModelOptions]="{standalone: true}" placeholder="Quantity" />
+          </mat-form-field>
+          </div>
+          
+
+          <div class="col-md-6" class="form-outline mb-4">
+            <mat-form-field class="example-full-width">
+            <input matInput  type="date" [(ngModel)]="updatestorage.actDate" [ngModelOptions]="{standalone: true}" placeholder=" Date Of Operation" />
+          </mat-form-field>
+          </div>
+          
+        
+        </div>
+        
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary"(click)="updateStorage(updatestorage.idStorage)" data-dismiss="modal">Save</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModalupdatecn">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title centered-cell gras">Update Control or Network Server</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal Body -->
+        <div class="modal-body">
+          
+          
+
+          
+
+          <div class="col-md-6" class="form-outline mb-4">
+            <mat-form-field class="example-full-width">
+            <input matInput  type="number" [(ngModel)]="updatecontrolnetwork.qty" [ngModelOptions]="{standalone: true}" placeholder="Quantity" />
+          </mat-form-field>
+          </div>
+          
+          
+
+          <div class="col-md-6" class="form-outline mb-4">
+            <mat-form-field class="example-full-width">
+            <input matInput  type="date" [(ngModel)]="updatecontrolnetwork.actDate" [ngModelOptions]="{standalone: true}" placeholder=" Date Of Operation" />
+          </mat-form-field>
+          </div>
+          
+        </div>
+        
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary"(click)="updateCN(updatecontrolnetwork.idControlNetwork)" data-dismiss="modal" >Save</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="myModalupdatedevice">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title centered-cell gras">Update Device</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal Body -->
+        <div class="modal-body">
+          
+          
+
+          
+
+          <div class="col-md-6" class="form-outline mb-4">
+            <mat-form-field class="example-full-width">
+            <input matInput  type="number" [(ngModel)]="updatedevice.qty" [ngModelOptions]="{standalone: true}" placeholder="Quantity" />
+          </mat-form-field>
+          </div>
+          
+
+          <div class="col-md-6" class="form-outline mb-4">
+            <mat-form-field class="example-full-width">
+            <input matInput  type="date" [(ngModel)]="updatedevice.actDate" [ngModelOptions]="{standalone: true}" placeholder=" Date Of Operation" />
+          </mat-form-field>
+          </div>
+          
+        </div>
+        
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary"(click)="updateDevice(updatedevice.idElements)" data-dismiss="modal">Save</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

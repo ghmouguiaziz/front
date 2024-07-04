@@ -1,0 +1,228 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+
+
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header d-flex align-items-center card-header-danger">
+                        <h4 class="card-title mt-0">Hardsware & Build</h4>
+                        
+                        <p class="card-category"> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table centered-cell table-hover">
+                                <thead>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <tr class="gras">
+                                        <td></td>
+                                        <td>CAPEX</td>
+                                        <td>OPEX</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="gras ">OIaaS</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>HW control and Network Nodes</td>
+                                        <td>{{hwControlNetworks}}K€</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HW Networking</td>
+                                        <td>{{hwDevices}}K€</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HW compute nodes</td>
+                                        <td>{{hwComputes}}K€</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HW storage nodes</td>
+                                        <td>{{hwStorages}}K€</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Delivery costs & HW installation</td>
+                                        <td>{{installationCosts}}K€</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Build OIaaS</td>
+                                        <td>{{build}}K€</td>
+                                        <td></td>
+                                        <td><select   class="custom-select " (change)="onSelectProvider($event)"> 
+                                            <option value="" disabled selected>Choose Provider</option>  
+                                            <option *ngFor="let b of getUniqueProvider()">{{b.provider}}</option>
+                                          </select>
+                                          <select   class="custom-select " [(ngModel)]="selectedBuild" *ngIf="provider" (change)="onSelectName($event)"> 
+                                            <option value="" disabled selected>Choose Build</option>  
+                                            <option *ngFor="let b of buildsByProvider">{{b.name}}</option>
+                                          </select></td>
+                                    </tr>
+                                    <tr><td colspan="4" class="gras">Local PaaS</td></tr>
+                                    <tr>
+                                        <td> HW compute nodes </td>
+                                        <td>{{hwComputesLP}}K€</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td> Delivery costs & HW installation </td>
+                                        <td>{{installationCostsLP}}K€</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Build Local PaaS </td>
+                                        <td>{{buildLP}}K€</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header d-flex align-items-center card-header-danger">
+                        <h4 class="card-title mt-0">Services</h4>
+                        
+                        <p class="card-category"> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table centered-cell table-hover">
+                                <thead>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <tr class="gras">
+                                        <td></td>
+                                        <td>CAPEX</td>
+                                        <td>OPEX</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="gras ">OIaaS</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>Release Management</td>
+                                        <td></td>
+                                        <td>{{RM}}K€</td>
+                                        <td><select   class="custom-select" (change)="onSelectProviderR($event)"> 
+                                            <option value="" disabled selected>Upgrades number</option>  
+                                            <option>1</option>
+                                            <option>2</option>
+                                            
+                                              
+                                          </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>RUN activities (L1 / L2) </td>
+                                        <td></td>
+                                        <td>{{RAL1}}K€</td>
+                                        <td class="gras"><input type="number" [(ngModel)]="nbM" [ngModelOptions]="{standalone: true}">Run periode(Month)<select   class="custom-select " (change)="onSelectProviderS($event)"> 
+                                            <option value="" disabled selected>Choose Provider</option>  
+                                            <option *ngFor="let b of getUniqueProviderS()">{{b.provider}}</option>
+                                          </select></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>RUN activities IaaS (L3) & Maintenance</td>
+                                        <td></td>
+                                        <td>{{RAL3}}K€</td>
+                                        <td><select   class="custom-select" (change)="onSelectProviderL($event)"> 
+                                            <option value="" disabled selected>Choose the level</option>  
+                                            <option>Basic</option>
+                                            <option>Plus</option>
+                                            <option>Premium</option>
+                                              
+                                          </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Training (1 month)</td>
+                                        <td><input type="number" [(ngModel)]="T" [ngModelOptions]="{standalone: true}"></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Advanced Training</td>
+                                        <td><input  type="number" [(ngModel)]="AT" [ngModelOptions]="{standalone: true}"></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Openstack ELS Licences</td>
+                                        <td></td>
+                                        <td><input type="number"[(ngModel)]="ELS" [ngModelOptions]="{standalone: true}"></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>Openstack with RH support</td>
+                                        <td></td>
+                                        <td><input type="number"[(ngModel)]="ost" [ngModelOptions]="{standalone: true}"></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                    <tr><td class="gras" colspan="4">Local PaaS</td></tr>
+                                    <tr>
+                                        <td>RUN activities CaaS, PaaS (Mgt Services)</td>
+                                        <td></td>
+                                        <td>{{RAPC}}K€</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Openshift with RH support</td>
+                                        <td></td>
+                                        <td><input type="number" [(ngModel)]="osh" [ngModelOptions]="{standalone: true}"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button class="btn btn-danger btn-sm" type="button" (click)="calculateBudget()" data-toggle="modal"  >Calculate OPC Budget</button>
+                                          </td>
+                                          <td class="gras">{{Budget}}K€</td>
+                                          <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        
+            
+            
+        </div>
+    </div>
+</div>
+  

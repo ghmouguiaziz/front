@@ -1,0 +1,21 @@
+.toast {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    position: fixed;
+    right: 4%;
+    top: 5%;
+    width: 270PX;
+    background-color: white !important;
+    text-align: center;
+  }
+  .toast-body {
+    padding: 0.75rem;
+    font-weight: 500;
+}
+.bg-success {
+  color: green;
+}
+
+.bg-danger {
+  color: red;
+}

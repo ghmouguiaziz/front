@@ -1,0 +1,20 @@
+.centered-cell {
+    text-align: center;
+  }
+  .gras {
+    font-weight: bold;
+  }
+  .large-text {
+    font-size: 35px;
+  }
+  .margin-top {
+    margin-top: 60px; 
+  }
+  .dropdown-menu .dropdown-item:hover, .dropdown-menu .dropdown-item:focus, .dropdown-menu a:hover, .dropdown-menu a:focus, .dropdown-menu a:active {
+    background-color: #dd4b39;
+}
+.dropdown-menu .dropdown-item {
+  cursor: pointer;
+}
+
+  

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    
+  </head>
+  <body>
+    <!-- Start your project here-->
+    <section class="h-100 gradient-form" style="background-color: #eee;">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-xl-10">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-lg-6">
+                  <div class="card-body p-md-5 mx-md-4">
+    
+                    <div class="text-center">
+                      <img src="https://i0.wp.com/bastienaboula.com/wp-content/uploads/2016/09/98986_sofrecom_logo_hte_resolution.jpg?fit=2337%2C2338&ssl=1"
+                        style="width: 350px;" alt="logo">
+                      
+                    </div>
+    
+                    <form>
+                      <p>Please login to your account</p>
+    
+                      <div class="col-md-6" class="form-outline mb-4">
+                        <mat-form-field class="example-full-width">
+                        <input matInput  type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" placeholder="Email" />
+                      </mat-form-field>
+                      </div>
+                      
+                      <div class="col-md-6" class="form-outline mb-4">
+                        <mat-form-field class="example-full-width">
+                        <input matInput  type="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" placeholder="Password" />
+                      </mat-form-field>
+                      </div>
+                    
+                      <div  class="text-center pt-1 mb-5 pb-1 ">
+                        <form >
+                        <button  class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" (click)="login()">Log
+                          in</button></form>
+                          
+                          <div *ngIf="errorMessage" class="error-message">
+                            {{ errorMessage }}
+                          </div>
+                          
+                        <a class="text-muted" href="#!">Forgot password?</a>
+                      </div>
+                      
+                      <div class="d-flex align-items-center justify-content-center pb-4">
+                        <p class="mb-0 me-2">Don't have an account?</p>
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">
+                          Create new
+                        </button>
+                        
+                        <!-- Popup (Modal) -->
+                        <div class="modal fade" id="myModal">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                <h4 class="modal-title">New User</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+                              
+                              <!-- Modal Body 
+                              <div class="modal-body">
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="text" [(ngModel)]="nuser.userName" [ngModelOptions]="{standalone: true}" placeholder="Username" />
+                                </mat-form-field>
+                                </div>
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="text" [(ngModel)]="nuser.email" [ngModelOptions]="{standalone: true}" placeholder="Email" />
+                                </mat-form-field>
+                                </div>
+                                
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="password" [(ngModel)]="nuser.password" [ngModelOptions]="{standalone: true}" placeholder="Password" />
+                                </mat-form-field>
+                                </div>
+                                <div class="col-md-6" class="form-outline mb-4">
+                                  <mat-form-field class="example-full-width">
+                                  <input matInput  type="password" [(ngModel)]="confirmPassword" placeholder="Confirm Password" />
+                                </mat-form-field>
+                                </div>
+                              </div>
+                              -->
+                              <!-- Modal Footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" >SIGN UP</button>
+                                <!--(click)="register()"-->
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- Add Bootstrap JS and jQuery scripts -->
+                        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                        
+                        
+                      </div>
+    
+                    </form>
+    
+                  </div>
+                </div>
+                <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                  <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                    <h4 class="mb-4">We are more than just a company</h4>
+                    <p class="small mb-0"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End your project here-->
+
+    <!-- MDB -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
+  </body>
+</html>

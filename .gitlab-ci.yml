@@ -1,0 +1,40 @@
+stages:
+- build
+- delivery
+- deploy
+variables:
+  IMAGE_NAME: "front:latest.0"
+  REGISTRY_URL: "registry.gitlab.tech.orange/movetocloudinventory/frontend"
+
+build:
+  stage: build
+  image: node:18.13
+  script:
+    - npm install --force
+    - npm run build
+  only:
+    - devpfe
+  tags:
+    - testDeploy
+delivery:
+  stage: delivery
+  image: docker:latest
+  script:
+    - docker build -t $IMAGE_NAME .
+    - docker login -u mohamedaziz.ghmougui -p LeaQvGUq4c7RtvrXVq7x $REGISTRY_URL
+    - docker tag $IMAGE_NAME $REGISTRY_URL/$IMAGE_NAME
+    - docker push $REGISTRY_URL/$IMAGE_NAME
+
+  only:
+    - devpfe
+  tags:
+    - testDeploy
+deploy:
+  stage: deploy
+  image: docker:latest
+  script:
+    - docker-compose -f docker-compose.yml up -d
+  only:
+    - devpfe
+  tags:
+    - testDeploy        

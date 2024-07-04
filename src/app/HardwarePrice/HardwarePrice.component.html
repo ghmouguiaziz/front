@@ -1,0 +1,282 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center card-header-danger">
+                        <h4 class="card-title ">Servers Price </h4>
+                        
+                        <p class="card-category"> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive ">
+                            <table class="table centered-cell">
+                                <thead class=" text-primary">
+                                    <th>
+                                      Name 
+                                    </th>
+                                    
+                                    
+                                    <th>
+                                        Unit Price Euro
+                                    </th>
+                                    <th>
+                                        Unit price USD
+                                  </th>
+                                  <th *ngIf="admin" >
+                                    <button class=" btn centered-cell  btn-gray btn-sm icon-button "  data-toggle="modal" data-target="#myModalnewserver">
+                                      <i class="material-icons  ">add</i>
+                                     
+                                    </button>
+                                </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let a of servers">
+                                        <td>
+                                          {{a.name}}
+                                        </td>
+                                        
+                                        <td>
+                                          {{a.euroPrice}}
+                                        </td>
+                                        <td >
+                                          {{a.usdPrice}}
+                                      </td>
+                                      <td *ngIf="admin">
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeleteP" (click)="getid(a.id)" >
+                                          <i class="material-icons  ">delete</i>
+                                        </button>
+                                      
+                                        <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdateP"  (click)="getupdateP(a)" >
+                                          <i class="material-icons  ">edit</i>
+                                        </button>
+                                      </td>
+                                        
+                                    </tr>
+                                    
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="myModalnewserver">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title centered-cell gras">New Server </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal Body -->
+                      <div class="modal-body">
+                        
+                        <select   class="custom-select" (change)="onSelectS($event)"  > 
+                          <option value="" disabled selected>Name Of Server</option>  
+                          <option *ngFor="let c of computesCapa">{{c.name}}</option>
+                          <option *ngFor="let c of storagesCapa">{{c.name}}</option>
+                          <option *ngFor="let c of controlnetsCapa">{{c.classOfcontrolNetwork}}</option>
+                            
+                        </select>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="news.euroPrice" [ngModelOptions]="{standalone: true}" placeholder="Price (EURO)" />
+                        </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="news.usdPrice" [ngModelOptions]="{standalone: true}" placeholder="Price (USD)" />
+                        </mat-form-field>
+                        </div>
+
+                        
+          
+                        
+                      </div>
+                      
+                      <!-- Modal Footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"(click)="addServer()" data-dismiss="modal" >ADD</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header d-flex align-items-center card-header-danger">
+                      <h4 class="card-title ">Devices Price </h4>
+                      
+                      <p class="card-category"> </p>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table centered-cell">
+                              <thead class=" text-primary">
+                                  <th>
+                                    Name 
+                                  </th>
+                                  <th>
+                                      Unit Price Euro
+                                  </th>
+                                  <th>
+                                      Unit price USD
+                                </th>
+                                
+                                <th *ngIf="admin" >
+                                  <button class=" btn centered-cell  btn-gray btn-sm icon-button "  data-toggle="modal" data-target="#myModalnewdevice">
+                                    <i class="material-icons  ">add</i>
+                                   
+                                  </button>
+                              </th>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let a of devices">
+                                      <td>
+                                        {{a.name}}
+                                      </td>
+                                      
+                                      <td>
+                                        {{a.euroPrice}}
+                                      </td>
+                                      <td >
+                                        {{a.usdPrice}}
+                                    </td>
+                                    <td *ngIf="admin">
+                                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeleteP" (click)="getid(a.id)">
+                                        <i class="material-icons  ">delete</i>
+                                      </button>
+                                    
+                                      <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdateP" (click)="getupdateP(a)"  >
+                                        <i class="material-icons  ">edit</i>
+                                      </button>
+                                    </td>
+                                      
+                                  </tr>
+                                  
+                                  
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="modal fade" id="myModalnewdevice">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title centered-cell gras">New Device </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  
+                  <!-- Modal Body -->
+                  <div class="modal-body">
+                    
+                    <select   class="custom-select" (change)="onSelectD($event)"  > 
+                      <option value="" disabled selected>Name Of Device</option>  
+                      <option *ngFor="let c of devicesCapa">{{c.name}}</option>
+                      
+                        
+                    </select>
+
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="newd.euroPrice" [ngModelOptions]="{standalone: true}" placeholder="Price (EURO)" />
+                    </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="newd.usdPrice" [ngModelOptions]="{standalone: true}" placeholder="Price (USD)" />
+                    </mat-form-field>
+                    </div>
+
+                    
+      
+                    
+                  </div>
+                  
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary"(click)="addDevice()" data-dismiss="modal" >ADD</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+
+
+
+
+  <div class="modal fade" id="myModaldeldeleteP">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title gras">Delete?</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-secondary"  (click)="deleteP(id)" data-dismiss="modal">yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade" id="myModalupdateP">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title centered-cell gras">Update Server </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal Body -->
+        <div class="modal-body">
+          
+          
+
+          <div class="col-md-6" class="form-outline mb-4">
+            <mat-form-field class="example-full-width">
+            <input matInput  type="number" [(ngModel)]="updateP.euroPrice" [ngModelOptions]="{standalone: true}" placeholder="Price (EURO)" />
+          </mat-form-field>
+          </div>
+
+          <div class="col-md-6" class="form-outline mb-4">
+            <mat-form-field class="example-full-width">
+            <input matInput  type="number" [(ngModel)]="updateP.usdPrice" [ngModelOptions]="{standalone: true}" placeholder="Price (USD)" />
+          </mat-form-field>
+          </div>
+
+          
+
+          
+        </div>
+        
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary"(click)="updatep(updateP.id)" data-dismiss="modal">Save</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>

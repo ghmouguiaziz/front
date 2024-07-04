@@ -1,0 +1,811 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header d-flex align-items-center card-header-danger">
+                        <h4 class="card-title  mt-0">Compute Servers</h4>
+                        
+                        <p class="card-category"> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table centered-cell table-hover">
+                                <thead>
+                                    <th>
+                                        CPU
+                                      </th>
+                                      <th>
+                                        Name Of Compute 
+                                      </th>
+                                      <th>
+                                        Class Of Compute 
+                                      </th>
+                                      <th>
+                                        Description 
+                                      </th>
+                                      
+                                      <th>
+                                        vCPU
+                                      </th>
+                                      <th>
+                                        RAM
+                                      </th>
+                                      <th>
+                                          SFPs
+                                          
+                                       </th>
+                                       <th *ngIf="admin" >
+                                        <button class=" btn centered-cell  btn-gray btn-sm icon-button "  data-toggle="modal" data-target="#myModalnewcompute">
+                                          <i class="material-icons  ">add</i>
+                                         
+                                        </button>
+                                       </th>
+                                       
+                                  
+                                  
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let c of computes" >
+                                          <td >
+                                            {{c.cpu}}
+                                          </td>
+                                          <td >
+                                            {{c.name}}
+                                          </td>
+                                          <td>
+                                            {{c.classOfCompute}}
+                                          </td>
+                                          <td >
+                                            {{c.descr}}
+                                          </td>
+                                          <td >
+                                            {{c.maxvcpu}}
+                                        </td>
+                                          <td>
+                                            {{c.maxvram}}
+                                          </td>
+                                          <td>
+                                            {{c.sfps}}
+                                          </td>
+                                          <div class="modal fade" id="myModaldeldeletecompute" tabindex="-1" >
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                              
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                  <h4 class="modal-title gras">Delete?</h4>
+                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                  <button type="button" class="btn btn-secondary" (click)="DeleteCompute(idC)" data-dismiss="modal"  >yes</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                            <td *ngIf="admin">
+                                              <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdatecompute" (click)="getupdatecompute(c)" >
+                                                <i class="material-icons  ">edit</i>
+                                              </button>
+                                              <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeletecompute" (click)="getidC(c.idComputeCapacities)" >
+                                                <i class="material-icons  ">delete</i>
+                                              </button>
+                                              
+                                              
+                                            </td>
+                                             
+                                          
+                                          
+                                          
+                                          
+                                      </tr>
+                                      
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="modal fade" id="myModalnewcompute">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title centered-cell gras">New Compute</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal Body -->
+                      <div class="modal-body">
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="text" [(ngModel)]="newcompute.name" [ngModelOptions]="{standalone: true}" placeholder="Name Of Compute" />
+                        </mat-form-field>
+                        </div>
+
+                        <select class="custom-select" (change)="onSelectClass($event)"  > 
+                          <option value="" disabled selected>Class Of Compute</option>  
+                          <option >Basic Compute</option>
+                          <option >Basic Compute LocalPaaS</option>
+                          <option >Intensive Compute</option>
+                          <option >Network Compute</option>
+                            
+                        </select>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="newcompute.cpu" [ngModelOptions]="{standalone: true}" placeholder="CPU" />
+                        </mat-form-field>
+                        </div>
+                        
+                        
+                        
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="newcompute.maxvcpu" [ngModelOptions]="{standalone: true}" placeholder="Max vCPU" />
+                        </mat-form-field>
+                        </div>
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="newcompute.maxvram" [ngModelOptions]="{standalone: true}" placeholder="Max RAM" />
+                        </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="newcompute.sfps" [ngModelOptions]="{standalone: true}" placeholder="SFPs" />
+                        </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="text" [(ngModel)]="newcompute.descr" [ngModelOptions]="{standalone: true}" placeholder="Description" />
+                        </mat-form-field>
+                        </div>
+                      </div>
+                      
+                      <!-- Modal Footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" (click)="addCompute()" data-dismiss="modal">Add</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="myModalupdatecompute">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title centered-cell gras">Update Compute</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal Body -->
+                      <div class="modal-body">
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="text" [(ngModel)]="updatecompute.classOfCompute" [ngModelOptions]="{standalone: true}" placeholder="Class Of Compute" />
+                        </mat-form-field>
+                        </div>
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="text" [(ngModel)]="updatecompute.name" [ngModelOptions]="{standalone: true}" placeholder="Name Of Compute" />
+                        </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="text" [(ngModel)]="updatecompute.descr" [ngModelOptions]="{standalone: true}" placeholder="Description" />
+                        </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="updatecompute.cpu" [ngModelOptions]="{standalone: true}" placeholder="CPU" />
+                        </mat-form-field>
+                        </div>
+                        
+                        
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="updatecompute.maxvcpu" [ngModelOptions]="{standalone: true}" placeholder="Max vCPU" />
+                        </mat-form-field>
+                        </div>
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="updatecompute.maxvram" [ngModelOptions]="{standalone: true}" placeholder="Max RAM" />
+                        </mat-form-field>
+                        </div>
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="updatecompute.sfps" [ngModelOptions]="{standalone: true}" placeholder="SFPs" />
+                        </mat-form-field>
+                        </div>
+                      </div>
+                      
+                      <!-- Modal Footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" (click)="updateCompute(updatecompute.idComputeCapacities)" data-dismiss="modal" >Save Changes</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+              </div>
+             
+            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header d-flex align-items-center card-header-danger">
+                        <h4 class="card-title mt-0"> Storage Servers</h4>
+                        
+                        <p class="card-category"> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table centered-cell table-hover">
+                                <thead class="">
+                                    <th>
+                                        Range 
+                                      </th>
+                                      <th>
+                                        Name Of Compute  
+                                      </th>
+                                      <th >
+                                        Class Of Storage 
+                                      </th>
+                                      <th >
+                                        Description
+                                      </th>
+                                      <th>
+                                          Disk Number 
+                                      </th>
+                                      <th>
+                                        Disk volume(Gb)
+                                      </th>
+                                      <th>
+                                        Volume Brut
+                                      </th>
+                                      <th>
+                                        Volume Net
+                                      </th>
+                                      <th>
+                                          SFPs
+                                          
+                                          <th *ngIf="admin" >
+                                            <button class=" btn centered-cell  btn-gray btn-sm icon-button "  data-toggle="modal" data-target="#myModalnewstorage">
+                                              <i class="material-icons">add</i>
+                                             
+                                            </button>
+                                           </th>
+                                       
+                                      
+                                      
+                                       
+                                  
+                                  
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor=" let s of storages">
+                                          <td >
+                                            {{s.rnge}}
+                                          </td>
+                                          <td >
+                                            {{s.name}}
+                                          </td>
+                                          <td >
+                                            {{s.classOfStorage}}
+                                          </td>
+                                          <td>
+                                            {{s.descr}}
+                                        </td>
+                                          <td >
+                                            {{s.diskNumber}}
+                                          </td>
+                                          <td >
+                                            {{s.diskVolume}}
+                                        </td>
+                                          <td>
+                                              {{s.volumeBrut}}
+                                          </td>
+                                          <td>
+                                              {{s.volumeNet}}
+                                          </td>
+                                          <td>
+                                              {{s.sfps}}
+                                          </td>
+                                          
+                                          <div class="modal fade" id="myModaldeldeletestorage">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                              
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                  <h4 class="modal-title gras">Delete?</h4>
+                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                  <button type="button" class="btn btn-secondary"  (click)="deleteStorage(idS)" data-dismiss="modal">yes</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                            <td *ngIf="admin">
+                                              <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdatestorage" (click)="getupdatestorage(s)" >
+                                                <i class="material-icons  ">edit</i>
+                                              </button>
+                                              <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeletestorage" (click)="getidS(s.idStorageCapacities)">
+                                                <i class="material-icons  ">delete</i>
+                                              </button>
+                                            </td>
+                                          
+                                          
+                                      </tr>
+                                      
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="modal fade" id="myModalnewstorage">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title centered-cell gras">New Storage</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  
+                  <!-- Modal Body -->
+                  <div class="modal-body">
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="text" [(ngModel)]="newstorage.name" [ngModelOptions]="{standalone: true}" placeholder="Name Of Storage" />
+                    </mat-form-field>
+                    </div>
+
+                    <select   class="custom-select" (change)="onSelectSClass($event)"  > 
+                      <option value="" disabled selected>Class Of Storage</option>  
+                      <option >Capacity Storage</option>
+                      <option >Performance Storage</option>
+                      
+                        
+                    </select>
+
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="newstorage.rnge" [ngModelOptions]="{standalone: true}" placeholder="Range" />
+                    </mat-form-field>
+                    </div>
+                    
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="newstorage.diskNumber" [ngModelOptions]="{standalone: true}" placeholder="Disk Number" />
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="newstorage.diskVolume" [ngModelOptions]="{standalone: true}" placeholder="Disk Volume" />
+                    </mat-form-field>
+                    </div>
+                    
+                    
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="newstorage.sfps" [ngModelOptions]="{standalone: true}" placeholder="SFPs" />
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="newstorage.descr" [ngModelOptions]="{standalone: true}" placeholder="Description" />
+                    </mat-form-field>
+                    </div>
+                  </div>
+                  
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" (click)="addStorage()" data-dismiss="modal" >Add</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="myModalupdatestorage">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title centered-cell gras">Update Storage</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  
+                  <!-- Modal Body -->
+                  <div class="modal-body">
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="text" [(ngModel)]="updatestorage.classOfStorage" [ngModelOptions]="{standalone: true}" placeholder="class Of Storage" />
+                    </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="text" [(ngModel)]="updatestorage.name" [ngModelOptions]="{standalone: true}" placeholder="Name Of Storage" />
+                    </mat-form-field>
+                    </div>
+
+
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="updatestorage.rnge" [ngModelOptions]="{standalone: true}" placeholder="Range" />
+                    </mat-form-field>
+                    </div>
+                    
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="updatestorage.diskNumber" [ngModelOptions]="{standalone: true}" placeholder="Disk Number" />
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="updatestorage.diskVolume" [ngModelOptions]="{standalone: true}" placeholder="Disk Volume" />
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="updatestorage.volumeBrut" [ngModelOptions]="{standalone: true}" placeholder="Volume Brut" />
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="updatestorage.volumeNet" [ngModelOptions]="{standalone: true}" placeholder="Volume Net" />
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="number" [(ngModel)]="updatestorage.sfps" [ngModelOptions]="{standalone: true}" placeholder="SFPs" />
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="text" [(ngModel)]="updatestorage.descr" [ngModelOptions]="{standalone: true}" placeholder="Description" />
+                    </mat-form-field>
+                    </div>
+                  </div>
+                  
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" (click)="updateStorage(updatestorage.idStorageCapacities)" data-dismiss="modal" >Save Changes</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+          </div>
+        
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header d-flex align-items-center card-header-danger">
+                        <h4 class="card-title mt-0"> Control and Network Servers</h4>
+                        
+                        <p class="card-category"> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table centered-cell table-hover">
+                                <thead class="">
+                                    
+                                      <th>
+                                        Class Of Compute 
+                                      </th>
+                                      
+                                      <th>
+                                        SFPs
+                                      </th>
+                                      <th *ngIf="admin" >
+                                        <button class=" btn centered-cell  btn-gray btn-sm icon-button" data-toggle="modal" data-target="#myModalnewcontrolnetwork">
+                                          <i class="material-icons">add</i>
+                                         
+                                        </button>
+                                       </th>
+                                      
+                                       
+                                         
+                                       
+                                       
+                                  
+                                  
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let cn of controlnetworks">
+                                          <td >
+                                            {{cn.classOfcontrolNetwork}}
+                                          </td>
+                                          <td >
+                                            {{cn.sfps}}
+                                          </td>
+                                          <div class="modal fade" id="myModaldeldeletecontrolnetwork">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                              
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                  <h4 class="modal-title gras">Delete?</h4>
+                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                  <button type="button" class="btn btn-secondary"  (click)="deleteControlNetwork(idCN)" data-dismiss="modal" >yes</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <td *ngIf="admin">
+                                            <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdatecontrolnetwork" (click)="getupdatecontrolnetwork(cn)"  >
+                                              <i class="material-icons">edit</i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeletecontrolnetwork" (click)="getidCN(cn.idControlNetworkCapacities)">
+                                              <i class="material-icons">delete</i>
+                                            </button>
+                                          </td>
+                                          </tr>
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="myModalnewcontrolnetwork">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title centered-cell gras">New Control Or Network node</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal Body -->
+                      <div class="modal-body">
+                        
+                        <select   class="custom-select" (change)="onSelectSNClass($event)"  > 
+                          <option value="" disabled selected>Class</option>  
+                          <option >Control node</option>
+                          <option >Network node</option>
+                        </select>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="newcontrolnetwork.sfps" [ngModelOptions]="{standalone: true}" placeholder="SFPs" />
+                        </mat-form-field>
+                        </div>
+                      </div>
+                      
+                      <!-- Modal Footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"(click)="addControlNetwork()" data-dismiss="modal" >Add</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="myModalupdatecontrolnetwork">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title centered-cell gras">Update Control Or Network node</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal Body -->
+                      <div class="modal-body">
+                        
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="text" [(ngModel)]="updatecontrolnetwork.classOfcontrolNetwork" [ngModelOptions]="{standalone: true}" placeholder="Control Or Network node?" />
+                        </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="updatecontrolnetwork.sfps" [ngModelOptions]="{standalone: true}" placeholder="SFPs" />
+                        </mat-form-field>
+                        </div>
+                      </div>
+                      
+                      <!-- Modal Footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"(click)="updateControlNetwork(updatecontrolnetwork.idControlNetworkCapacities)" data-dismiss="modal">Save Changes</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" id="myModalnewdevice">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title centered-cell gras">New Device</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal Body -->
+                      <div class="modal-body">
+                        
+                        <select   class="custom-select" (change)="onSelectDevice($event)"  > 
+                          <option value="" disabled selected>Device</option>  
+                          <option >Access switchs Type (48 ports)</option>
+                          <option >Access Switchs Type (96 ports)</option>
+                          <option >OOB swithchs</option>
+                          <option >Firewalls</option>
+                        </select>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="newdevice.ports" [ngModelOptions]="{standalone: true}" placeholder="ports number" />
+                        </mat-form-field>
+                        </div>
+                      </div>
+                      
+                      <!-- Modal Footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"(click)="addDevice()" data-dismiss="modal">Add</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="myModalupdatedevice">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title centered-cell gras">Update Device</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal Body -->
+                      <div class="modal-body">
+                        
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="text" [(ngModel)]="updatedevice.name" [ngModelOptions]="{standalone: true}" placeholder="Name" />
+                        </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="number" [(ngModel)]="updatedevice.ports" [ngModelOptions]="{standalone: true}" placeholder="Ports number" />
+                        </mat-form-field>
+                        </div>
+                      </div>
+                      
+                      <!-- Modal Footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"(click)="updateDevice(updatedevice.id)" data-dismiss="modal">Save Changes</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+              </div>
+              <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header d-flex align-items-center card-header-danger">
+                        <h4 class="card-title mt-0"> Network Elements</h4>
+                        
+                        <p class="card-category"> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table centered-cell table-hover">
+                                <thead class="">
+                                    
+                                      <th>
+                                        Name
+                                      </th>
+                                      
+                                      <th>
+                                        Ports
+                                      </th>
+                                      <th *ngIf="admin" >
+                                        <button class=" btn centered-cell  btn-gray btn-sm icon-button "  data-toggle="modal" data-target="#myModalnewdevice">
+                                          <i class="material-icons  ">add</i>
+                                         
+                                        </button>
+                                       </th>
+                                      
+                                       
+                                         
+                                       
+                                       
+                                  
+                                  
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let cn of devices ">
+                                          <td >
+                                            {{cn.name}}
+                                          </td>
+                                          <td >
+                                            {{cn.ports}}
+                                          </td>
+                                          <div class="modal fade" id="myModaldeldeletedevice">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                              
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                  <h4 class="modal-title gras">Delete?</h4>
+                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                  <button type="button" class="btn btn-secondary"  (click)="DeleteDevice(idD)" data-dismiss="modal" >yes</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <td *ngIf="admin">
+                                            <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdatedevice" (click)="getupdateDevice(cn)"  >
+                                              <i class="material-icons">edit</i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeletedevice" (click)="getidD(cn.id)">
+                                              <i class="material-icons">delete</i>
+                                            </button>
+                                            
+                                          </td>
+                                          </tr>
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            
+        </div>
+    </div>
+</div>
+  

@@ -1,0 +1,158 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header d-flex align-items-center card-header-danger">
+                      <h4 class="card-title ">Licenses</h4>
+                      
+                      <p class="card-category"> </p>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead class=" text-primary">
+                                  <th>
+                                    Type of License 
+                                  </th>
+                                  <th>
+                                    SKU Prod 
+                                  </th>
+                                  <th>
+                                    Quantity
+                                  </th>
+                                  <th>
+                                    Activation Date
+                                  </th>
+                                  
+                                  <th>
+                                    Expiraion Date
+                                </th>
+                                <th>
+                                  Duration
+                              </th>
+                                <th>
+                                    Provider
+                                </th>
+                                <th *ngIf="admin">
+                                  <button class=" btn centered-cell  btn-gray btn-sm icon-button "  data-toggle="modal" data-target="#myModalnewlicensepur">
+                                    <i class="material-icons  ">add</i>
+                                   
+                                  </button>
+                              </th>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let a of Licenses">
+                                      <td>
+                                        {{a.nodeType}}
+                                      </td>
+                                      <td>
+                                        {{a.sku}}
+                                      </td>
+                                      <td>
+                                        {{a.qty}}
+                                      </td>
+                                      <td>
+                                        {{a.actDate}}
+                                    </td>
+                                      <td>
+                                        {{a.expDate}}
+                                      </td>
+                                      <td>
+                                        {{a.duration }}
+                                      </td>
+                                      <td>
+                                        {{a.provider }}
+                                      </td>
+                                      <td *ngIf="admin">
+                                        <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdate"   >
+                                          <i class="material-icons  ">edit</i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldelete" >
+                                          <i class="material-icons  ">delete</i>
+                                        </button>
+                                      
+                                        
+                                      </td>
+                                  </tr>
+                                  
+                              </tbody>
+                          </table>
+                          <div class="modal fade" id="myModalnewlicensepur">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                              
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                  <h4 class="modal-title centered-cell gras">New License  </h4>
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                
+                                <!-- Modal Body -->
+                                <div class="modal-body">
+                                  
+                                  <div class="col-md-6" class="form-outline mb-4">
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput  type="text" [(ngModel)]="newlicense.nodeType" [ngModelOptions]="{standalone: true}" placeholder="Type of License" />
+                                  </mat-form-field>
+                                  </div>
+          
+                                  <div class="col-md-6" class="form-outline mb-4">
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput  type="text" [(ngModel)]="newlicense.sku" [ngModelOptions]="{standalone: true}" placeholder="SKU" />
+                                  </mat-form-field>
+                                  </div>
+          
+                                  <div class="col-md-6" class="form-outline mb-4">
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput  type="number" [(ngModel)]="newlicense.qty" [ngModelOptions]="{standalone: true}" placeholder="Quantity" />
+                                  </mat-form-field>
+                                  </div>
+
+                                  <div class="col-md-6" class="form-outline mb-4">
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput  type="date" [(ngModel)]="newlicense.actDate" [ngModelOptions]="{standalone: true}" placeholder="Activation Date" />
+                                  </mat-form-field>
+                                  </div>
+
+                                  <div class="col-md-6" class="form-outline mb-4">
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput  type="date" [(ngModel)]="newlicense.expDate" [ngModelOptions]="{standalone: true}" placeholder="Expiration Date" />
+                                  </mat-form-field>
+                                  </div>
+
+                                  <div class="col-md-6" class="form-outline mb-4">
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput  type="number" [(ngModel)]="newlicense.duration" [ngModelOptions]="{standalone: true}" placeholder="Duration (Year)" />
+                                  </mat-form-field>
+                                  </div>
+
+                                  <div class="col-md-6" class="form-outline mb-4">
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput  type="text" [(ngModel)]="newlicense.provider" [ngModelOptions]="{standalone: true}" placeholder="Provider" />
+                                  </mat-form-field>
+                                  </div>
+          
+                                  
+                    
+                                  
+                                </div>
+                                
+                                <!-- Modal Footer -->
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-secondary"(click)="addLicense(idD)" >ADD</button>
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            
+          
+      </div>
+  </div>
+</div>

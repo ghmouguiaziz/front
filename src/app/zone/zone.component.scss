@@ -1,0 +1,55 @@
+.centered-cell {
+    text-align: center;
+  }
+  .red {
+    background-color: rgb(115, 53, 11);
+  }
+  .green {
+    background-color: rgb(84, 130, 53);
+  }
+  .blue {
+    background-color: rgb(47, 117, 181);
+  }
+  .gras {
+    font-weight: bold;
+  }
+  .red1 {
+    background-color: rgb(148, 68, 14);
+  }
+  .blue1 {
+    background-color: rgb(52, 131, 202);
+  }
+  .yellow {
+    background-color: rgb(191, 143, 0);
+  }
+  .yellow1 {
+    background-color: rgb(226, 167, 0);
+  }
+  .green1 {
+    background-color: rgb(104, 160, 66);
+  }
+  .icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .icon {
+    margin-right: 8px;
+  }
+  .custom-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+  }
+  
+  

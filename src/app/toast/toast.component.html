@@ -1,0 +1,9 @@
+<!-- toast.component.html -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1050;">
+    <div *ngFor="let toast of toastService.toasts" class="toast show" role="alert" [ngClass]="'bg-' + toast.type">
+      <div class="toast-body">
+        {{ toast.message }}
+      </div>
+    </div>
+  </div>
+  

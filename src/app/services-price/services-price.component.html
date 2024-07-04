@@ -1,0 +1,356 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-plain">
+              <div class="card-header d-flex align-items-center card-header-danger">
+                  <h4 class="card-title mt-0"> Build (one-time charging)</h4>
+                  
+                  <p class="card-category"> </p>
+              </div>
+              <div class="card-body">
+                  <div class="table-responsive">
+                      <table class="table centered-cell table-hover">
+                          <thead class="">
+                                <th>Name</th>
+                                <th>Provider</th>
+                                <th>Price</th>
+                                <th *ngIf="admin" >
+                                  <button class=" btn centered-cell  btn-gray btn-sm icon-button "  data-toggle="modal" data-target="#myModalnewbuild">
+                                    <i class="material-icons  ">add</i>
+                                   
+                                  </button></th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let a of builds">
+                                    <td> {{a.name}}</td>
+                                    <td>{{a.provider}}</td>
+                                    <td>{{a.price}}</td>
+                                    <td *ngIf="admin">
+                                      <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdateP" (click)="getupdateP(a)"  >
+                                        <i class="material-icons  ">edit</i>
+                                      </button>
+
+                                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeleteP" (click)="getid(a.id)" >
+                                        <i class="material-icons  ">delete</i>
+                                      </button>
+                                    
+                                      
+                                    </td>
+                                    </tr>
+                            </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="modal fade" id="myModalnewbuild">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title centered-cell gras">New Build Service</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal Body -->
+                <div class="modal-body">
+                  
+                  <div class="col-md-6" class="form-outline mb-4">
+                    <mat-form-field class="example-full-width">
+                    <input matInput  type="text" [(ngModel)]="newbuild.name" [ngModelOptions]="{standalone: true}" placeholder="Name" />
+                  </mat-form-field>
+                  </div>
+                
+
+                <div class="col-md-6" class="form-outline mb-4">
+                  <mat-form-field class="example-full-width">
+                  <input matInput  type="text" [(ngModel)]="newbuild.provider" [ngModelOptions]="{standalone: true}" placeholder="Provider" />
+                </mat-form-field>
+                </div>
+              
+
+                  
+
+                  <div class="col-md-6" class="form-outline mb-4">
+                    <mat-form-field class="example-full-width">
+                    <input matInput  type="number" [(ngModel)]="newbuild.price" [ngModelOptions]="{standalone: true}" placeholder="Price" />
+                  </mat-form-field>
+                  </div>
+                </div>
+                
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-secondary"(click)="addBuild()" data-dismiss="modal">ADD</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          
+          
+        </div>
+           
+          
+            <div class="col-md-12">
+              <div class="card card-plain">
+                  <div class="card-header d-flex align-items-center card-header-danger">
+                      <h4 class="card-title mt-0"> Run & Envolve per year</h4>
+                      
+                      <p class="card-category"> </p>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table centered-cell table-hover">
+                          <thead class="">
+                                <th>Name</th>
+                                <th>Provider</th>
+                                <th>Price</th>
+                                <th *ngIf="admin" >
+                                  <button class=" btn centered-cell  btn-gray btn-sm icon-button "  data-toggle="modal" data-target="#myModalnewrun">
+                                    <i class="material-icons  ">add</i>
+                                   
+                                  </button></th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let a of runs">
+                                    <td> {{a.name}}</td>
+                                    <td>{{a.provider}}</td>
+                                    <td>{{a.price}}</td>
+                                    <td *ngIf="admin">
+                                      <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdateP"  (click)="getupdateP(a)" >
+                                        <i class="material-icons  ">edit</i>
+                                      </button>
+
+                                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeleteP"(click)="getid(a.id)" >
+                                        <i class="material-icons  ">delete</i>
+                                      </button>
+                                    
+                                      
+                                    </td>
+                                    </tr>
+                            </tbody>
+                      </table>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="modal fade" id="myModalnewrun">
+                <div class="modal-dialog">
+                      <div class="modal-content">
+                      
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title centered-cell gras">New Run Service</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+                          
+                          <div class="col-md-6" class="form-outline mb-4">
+                            <mat-form-field class="example-full-width">
+                            <input matInput  type="text" [(ngModel)]="newrun.name" [ngModelOptions]="{standalone: true}" placeholder="Name" />
+                          </mat-form-field>
+                          </div>
+                        
+    
+                        <div class="col-md-6" class="form-outline mb-4">
+                          <mat-form-field class="example-full-width">
+                          <input matInput  type="text" [(ngModel)]="newrun.provider" [ngModelOptions]="{standalone: true}" placeholder="Provider" />
+                        </mat-form-field>
+                        </div>
+                      
+    
+                          
+    
+                          <div class="col-md-6" class="form-outline mb-4">
+                            <mat-form-field class="example-full-width">
+                            <input matInput  type="number" [(ngModel)]="newrun.price" [ngModelOptions]="{standalone: true}" placeholder="Price" />
+                          </mat-form-field>
+                          </div>
+                        </div>
+                        
+                        <!-- Modal Footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-secondary"(click)="addRun()" data-dismiss="modal">ADD</button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+              
+              
+              
+              
+            </div>
+      
+          <div class="col-md-12">
+              <div class="card card-plain">
+                  <div class="card-header d-flex align-items-center card-header-danger">
+                      <h4 class="card-title mt-0"> Upgrade</h4>
+                      
+                      <p class="card-category"> </p>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table centered-cell table-hover">
+                          <thead class="">
+                                <th>Name</th>
+                                <th>Level</th>
+                                <th>Price</th>
+                                <th *ngIf="admin" >
+                                  <button class=" btn centered-cell  btn-gray btn-sm icon-button "  data-toggle="modal" data-target="#myModalnewupgrade">
+                                    <i class="material-icons  ">add</i>
+                                   
+                                  </button></th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let a of upgrades">
+                                    <td> {{a.name}}</td>
+                                    <td>{{a.provider}}</td>
+                                    <td>{{a.price}}</td>
+                                    <td *ngIf="admin">
+                                      <button class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#myModalupdateP" (click)="getupdateP(a)" >
+                                        <i class="material-icons  ">edit</i>
+                                      </button>
+                                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeldeleteP" (click)="getid(a.id)"  >
+                                        <i class="material-icons  ">delete</i>
+                                      </button>
+                                    
+                                      
+                                    </td>
+                                    </tr>
+                            </tbody>
+                      </table>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="modal fade" id="myModalnewupgrade">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                  
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title centered-cell gras">New Upgrade Service</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                      
+                      <div class="col-md-6" class="form-outline mb-4">
+                        <mat-form-field class="example-full-width">
+                        <input matInput  type="text" [(ngModel)]="newupgrade.name" [ngModelOptions]="{standalone: true}" placeholder="Name" />
+                      </mat-form-field>
+                      </div>
+                    
+
+                    <div class="col-md-6" class="form-outline mb-4">
+                      <mat-form-field class="example-full-width">
+                      <input matInput  type="text" [(ngModel)]="newupgrade.provider" [ngModelOptions]="{standalone: true}" placeholder="Provider" />
+                    </mat-form-field>
+                    </div>
+                  
+
+                      
+
+                      <div class="col-md-6" class="form-outline mb-4">
+                        <mat-form-field class="example-full-width">
+                        <input matInput  type="number" [(ngModel)]="newupgrade.price" [ngModelOptions]="{standalone: true}" placeholder="Price" />
+                      </mat-form-field>
+                      </div>
+                    </div>
+                    
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-secondary"(click)="addUpgrade()" data-dismiss="modal">ADD</button>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              
+              
+              
+              
+            </div>
+          
+      </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="myModaldeldeleteP">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title gras">Delete?</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-secondary"  (click)="deleteP(id)" data-dismiss="modal">yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModalupdateP">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title centered-cell gras">Update Service</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal Body -->
+      <div class="modal-body">
+        
+        <div class="col-md-6" class="form-outline mb-4">
+          <mat-form-field class="example-full-width">
+          <input matInput  type="text" [(ngModel)]="updateP.name" [ngModelOptions]="{standalone: true}" placeholder="Name" />
+        </mat-form-field>
+        </div>
+      
+
+      <div class="col-md-6" class="form-outline mb-4">
+        <mat-form-field class="example-full-width">
+        <input matInput  type="text" [(ngModel)]="updateP.provider" [ngModelOptions]="{standalone: true}" placeholder="Provider" />
+      </mat-form-field>
+      </div>
+    
+
+        
+
+        <div class="col-md-6" class="form-outline mb-4">
+          <mat-form-field class="example-full-width">
+          <input matInput  type="number" [(ngModel)]="updateP.price" [ngModelOptions]="{standalone: true}" placeholder="Price" />
+        </mat-form-field>
+        </div>
+      </div>
+      
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary"(click)="updatep(updateP.id)" data-dismiss="modal">Save</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+version: "3.8"
+
+services:
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    restart: unless-stopped
+    cap_add:
+      - SYS_NICE
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: prix
+    ports:
+      - 3306:3306
+    volumes:
+      - ./cache/mysql:/var/lib/mysql
+      - ./conf-mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+
+  prix-backend:
+    container_name: prix-backend
+    depends_on:
+      - mysql
+    image: registry.gitlab.tech.orange/movetocloudinventory/prix/price:latest
+    restart: on-failure
+    environment:
+
+      - spring_datasource_url=jdbc:mysql://mysql:3306/prix?createDatabaseIfNotExist=true
+      - spring_datasource_username=root
+      - spring_datasource_password=root
+      - spring_jpa_hibernate_ddl_auto=update
+
+    ports:
+      - 8094:8094
+
+
+
+    stdin_open: true
+    tty: true
+  
+  ressources-backend:
+    container_name: ressources-backend
+    depends_on:
+      - mysql
+    image: registry.gitlab.tech.orange/movetocloudinventory/gestion_des_ressources/ressources:latest
+    restart: on-failure
+    environment:
+
+      - spring_datasource_url=jdbc:mysql://mysql:3306/servers?createDatabaseIfNotExist=true
+      - spring_datasource_username=root
+      - spring_datasource_password=root
+      - spring_jpa_hibernate_ddl_auto=update
+
+    ports:
+      - 8091:8091
+
+
+
+    stdin_open: true
+    tty: true
+  
+  serveurs-backend:
+    container_name: serveurs-backend
+    depends_on:
+      - mysql
+    image: registry.gitlab.tech.orange/movetocloudinventory/serveurs/serveurs:latest
+    restart: on-failure
+    environment:
+
+      - spring_datasource_url=jdbc:mysql://mysql:3306/capacities?createDatabaseIfNotExist=true
+      - spring_datasource_username=root
+      - spring_datasource_password=root
+      - spring_jpa_hibernate_ddl_auto=update
+
+    ports:
+      - 8093:8093
+
+
+
+    stdin_open: true
+    tty: true
+  
+  applications-backend:
+    container_name: applications-backend
+    depends_on:
+      - mysql
+    image: registry.gitlab.tech.orange/movetocloudinventory/gestion_des_application/applications:latest
+    restart: on-failure
+    environment:
+
+      - spring_datasource_url=jdbc:mysql://mysql:3306/applications?createDatabaseIfNotExist=true
+      - spring_datasource_username=root
+      - spring_datasource_password=root
+      - spring_jpa_hibernate_ddl_auto=update
+
+    ports:
+      - 8092:8092
+
+
+
+    stdin_open: true
+    tty: true
+
+  zones-backend:
+    container_name: zones-backend
+    depends_on:
+      - mysql
+    image: registry.gitlab.tech.orange/movetocloudinventory/gestion_des_zones/zones:latest
+    restart: on-failure
+    environment:
+
+      - spring_datasource_url=jdbc:mysql://mysql:3306/zones?createDatabaseIfNotExist=true
+      - spring_datasource_username=root
+      - spring_datasource_password=root
+      - spring_jpa_hibernate_ddl_auto=update
+
+    ports:
+      - 8090:8090
+
+
+
+    stdin_open: true
+    tty: true
+
+  front:
+    image: registry.gitlab.tech.orange/movetocloudinventory/frontend/front:latest.0
+    restart: on-failure
+    ports:
+      - 4200:4200
